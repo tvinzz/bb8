@@ -1,0 +1,30 @@
+{
+  "name": "bb8-astrobot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index",
+    "lint": "eslint ./src/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chalk": "^4.0.0",
+    "cheerio": "^1.0.0-rc.3",
+    "coingecko-api": "^1.0.10",
+    "html-entities": "^1.3.1",
+    "telegraf": "^3.38.0",
+    "telegraf-inline-menu": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "husky": "^4.2.5"
+  }
+}
