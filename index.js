@@ -8,15 +8,20 @@ const { cryptoCoinsInit } = require('./src/crypto');
 const chalk = require('chalk');
 const bb8 = require('./private/bb8.json');
 
+const { log } = console;
+
 const bot = new Telegraf(bb8.token);
 
 console.log(chalk.green('Status: BB-8 is active now'));
 
-menuInit(bot);
-weatherInit(bot);
-anekdotInit(bot);
-memInit(bot);
-currencyInit(bot);
-cryptoCoinsInit(bot);
-
-bot.launch();
+try {
+    menuInit(bot);
+    weatherInit(bot);
+    anekdotInit(bot);
+    memInit(bot);
+    currencyInit(bot);
+    cryptoCoinsInit(bot);
+    bot.launch();
+} catch (e) {
+    log(chalk.red(e.message));
+}

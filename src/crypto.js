@@ -1,6 +1,9 @@
 const CoinGecko = require('coingecko-api');
+const { ERROR_MESSAGE } = require('./consts');
 
 const CoinGeckoClient = new CoinGecko();
+
+const { log } = console;
 
 /**
  * Returns crypto coins data
@@ -8,14 +11,21 @@ const CoinGeckoClient = new CoinGecko();
  * @returns {Promise<{data: string, logo: *}>}
  */
 const getCoinData = async (coin) => {
-    const data = await CoinGeckoClient.coins.fetch(coin, {});
-    return {
-        logo: data.data.image.large,
-        data: `<b>${data.data.name}</b>\n`
-            + `1 ${data.data.symbol.toUpperCase()} = ${data.data.market_data.current_price.usd} USD\n`
-            + `1 ${data.data.symbol.toUpperCase()} = ${data.data.market_data.current_price.eur} EUR\n`
-            + `1 ${data.data.symbol.toUpperCase()} = ${data.data.market_data.current_price.rub} RUB`,
-    };
+    try {
+        const data = await CoinGeckoClient.coins.fetch(coin, {});
+        if (!data || !data.data) {
+            return null;
+        }
+        return {
+            logo: data.data.image.large,
+            data: `<b>${data.data.name}</b>\n`
+                + `1 ${data.data.symbol.toUpperCase()} = ${data.data.market_data.current_price.usd} USD\n`
+                + `1 ${data.data.symbol.toUpperCase()} = ${data.data.market_data.current_price.eur} EUR\n`
+                + `1 ${data.data.symbol.toUpperCase()} = ${data.data.market_data.current_price.rub} RUB`,
+        };
+    } catch (e) {
+        log(e.message);
+    }
 };
 
 /**
@@ -26,6 +36,10 @@ const getCoinData = async (coin) => {
  */
 const displayCryptoCurrencyInfo = async (coin, ctx) => {
     const coinData = await getCoinData(coin);
+    if (!coinData || !coinData.logo || !coinData.data) {
+        await ctx.reply(ERROR_MESSAGE);
+        return;
+    }
     await ctx.replyWithPhoto(coinData.logo);
     await ctx.replyWithHTML(coinData.data);
 };

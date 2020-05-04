@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
+const { ERROR_MESSAGE } = require('./consts');
 
 const MEM_URL = 'https://www.anekdot.ru/random/mem/';
 const BLANK_IMAGE_URL = 'https://upload.wikimedia.org/wikipedia/en/3/39/BB-8%2C_Star_Wars_The_Force_Awakens.jpg';
@@ -18,7 +19,7 @@ const getMem = async () => {
         return mems[3].attribs.src || mems[2].attribs.src || BLANK_IMAGE_URL;
     } catch (e) {
         log(e.message);
-        return 'Что-то пошло не так...';
+        return ERROR_MESSAGE;
     }
 };
 

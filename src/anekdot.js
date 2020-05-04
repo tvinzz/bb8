@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
 const { AllHtmlEntities } = require('html-entities');
+const { ERROR_MESSAGE } = require('./consts');
 
 const entities = new AllHtmlEntities();
 
@@ -29,7 +30,7 @@ const getAnekdot = async () => {
             + `${anekdots[2]}`;
     } catch (e) {
         log(e.message);
-        return 'Что-то пошло не так...';
+        return ERROR_MESSAGE;
     }
 };
 

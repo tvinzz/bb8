@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { ERROR_MESSAGE } = require('./consts');
 
 const { log } = console;
 
@@ -78,7 +79,7 @@ const getWeather = async (data) => {
         return formatWeather(response.data);
     } catch (e) {
         log(e.message);
-        return 'Что-то пошло не так...';
+        return ERROR_MESSAGE;
     }
 };
 

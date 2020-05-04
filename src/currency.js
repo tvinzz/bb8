@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { ERROR_MESSAGE } = require('./consts');
 
 const CURRENCY_RATES_URL = 'https://www.cbr-xml-daily.ru/daily_json.js';
 
@@ -22,7 +23,7 @@ const getCurrencyRates = async () => {
             + `💶 Евро € - ${eur.Value} руб. ${eurRate} ${eurDiff}`;
     } catch (e) {
         log(e.message);
-        return 'Что-то пошло не так...';
+        return ERROR_MESSAGE;
     }
 };
 
