@@ -12,6 +12,10 @@ const { log } = console;
 
 const bot = new Telegraf(bb8.token);
 
+bot.telegram.getMe().then((botInfo) => {
+    bot.options.username = botInfo.username
+})
+
 console.log(chalk.green('Status: BB-8 is active now'));
 
 try {

@@ -14,7 +14,7 @@ const {
     ERROR_MESSAGE,
 } = require('./consts');
 
-const menu = new TelegrafInlineMenu('Чем я могу вам помочь?');
+const menu = new TelegrafInlineMenu('Чем я могу помочь?');
 const weatherMenu = new TelegrafInlineMenu('Выберите город:');
 const cryptoMenu = new TelegrafInlineMenu('Выберите криптовалюту:');
 
