@@ -7,7 +7,7 @@ const { displayCryptoCurrencyInfo } = require('./crypto');
 
 const { weatherInfo, cryptoInfo, aboutBB8 } = require('./consts');
 
-const menu = new TelegrafInlineMenu('BB-8:');
+const menu = new TelegrafInlineMenu('Чем я могу вам помочь?');
 const weatherMenu = new TelegrafInlineMenu('Выберите город:');
 const cryptoMenu = new TelegrafInlineMenu('Выберите криптовалюту:');
 
@@ -28,7 +28,7 @@ const menuInit = (bot) => {
         .manual('EOS', 'eos', { joinLastRow: true, root: true })
         .manual('🔸 Другие криптовалюты', 'crypto', { root: true });
 
-    menu.manual('🤣 Анекдот', 'a');
+    menu.manual('🤣 Анекдоты', 'a');
 
     menu.manual('😸 Случайный мем', 'm', { joinLastRow: true });
 
