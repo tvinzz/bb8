@@ -53,11 +53,12 @@ const menuInit = (bot) => {
     menu.manual('ℹ️ BB-8', 'i', { joinLastRow: true });
 
     menu.setCommand('start');
-    bot.use(menu.init());
 
     const showMenu = menu.replyMenuMiddleware();
     const bb8Names = [/bb8/i, /bb-8/i, /ии8/i, /ии-8/i];
     bot.hears(bb8Names, showMenu);
+
+    bot.use(menu.init());
 
     try {
         bot.action('a', async (ctx) => ctx.replyWithHTML(await getAnekdot()));
