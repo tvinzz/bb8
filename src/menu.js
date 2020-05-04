@@ -52,6 +52,7 @@ const menuInit = (bot) => {
 
     const bb8Names = [/bb8/i, /bb-8/i, /ии8/i, /ии-8/i];
     bot.hears(bb8Names, showMenu);
+    bot.command('bb8', showMenu);
 
     bot.command('info', (ctx) => {
         ctx.replyWithAudio('https://kinamwood.ru/bb-8.mp3');
