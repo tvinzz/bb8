@@ -3,7 +3,7 @@ const CoinGecko = require('coingecko-api');
 const CoinGeckoClient = new CoinGecko();
 
 /**
- * Returns crypto coins rates
+ * Returns crypto coins data
  * @param coin
  * @returns {Promise<{data: string, logo: *}>}
  */
@@ -19,15 +19,22 @@ const getCoinData = async (coin) => {
 };
 
 /**
+ * Returns crypto coins info
+ * @param coin
+ * @param ctx
+ * @returns {Promise<void>}
+ */
+const displayCryptoCurrencyInfo = async (coin, ctx) => {
+    const coinData = await getCoinData(coin);
+    await ctx.replyWithPhoto(coinData.logo);
+    await ctx.replyWithHTML(coinData.data);
+};
+
+/**
  * Initiate crypto coins rates functionality
  * @param bot
  */
 const cryptoCoinsInit = (bot) => {
-    const displayCryptoCurrencyInfo = async (coin, ctx) => {
-        const coinData = await getCoinData(coin);
-        await ctx.replyWithPhoto(coinData.logo);
-        await ctx.replyWithHTML(coinData.data);
-    };
     bot.hears([/биткоин/i, /bitcoin/i], async (ctx) => {
         await displayCryptoCurrencyInfo('bitcoin', ctx);
     });
@@ -41,6 +48,6 @@ const cryptoCoinsInit = (bot) => {
 };
 
 module.exports = {
-    getCoinData,
+    displayCryptoCurrencyInfo,
     cryptoCoinsInit,
 };

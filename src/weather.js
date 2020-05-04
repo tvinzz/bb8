@@ -21,6 +21,11 @@ const cities = {
     'Ivanteyevka': 'ивантеевк',
     'Zagoryanskiy': 'загорян',
     'Podolsk': 'подольск',
+    'Samara': 'самар',
+    'Krasnodar': 'краснодар',
+    'Yalta': 'крым',
+    'Sochi': 'сочи',
+    'Novosibirsk': 'новосиб',
     'Ko Pha ngan': 'панган',
     'Dahab': 'егип',
     'Norochcholai': 'ланк',
@@ -49,7 +54,7 @@ const formatWeather = (data) => {
         + `​​💦​ Влажность: ${data.list[0].main.humidity}%\n`
         + `🌬 Ветер: ${Math.round(data.list[0].wind.speed)} м/с\n\n`
         + `🌀 Завтра днем ${data.list[index + 5].weather[0].description}\n`
-        + `🌡 Ночью: ${Math.round(data.list[index].main.temp)} °C, `
+        + `🌡 Ночью: ${Math.round(data.list[5].main.temp)} °C, `
         + `днем: ${Math.round(data.list[index + 5].main.temp)} °C\n`
         + `☁️ Давление: ${Math.round(data.list[index + 5].main.pressure / 1.33)} мм рт.ст.`;
 };
